@@ -7,10 +7,10 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 
 #import framework
-from flask import flask, g
+from flask import Flask, g
 
 #create instance
-app = flask(__name__)
+app = Flask(__name__)
 
 def get_db():
     if 'db' not in g:
