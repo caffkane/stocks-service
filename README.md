@@ -1,6 +1,10 @@
 #Stock Registry 
 Distributed stock ticker system written in a variety of languages. Just a learning opportunity for myself
 
+## Using 
+Python, Docker, Flask, SQLite3
+
+
 ## API Spec
 
 Every response will have the form 
