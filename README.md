@@ -2,7 +2,7 @@
 Distributed stock ticker system written in a variety of languages. Just a learning opportunity for myself
 
 ## Using 
-Python, Docker, Flask, SQLite3
+Python, Docker, Flask, SQLite3, Postman (testing)
 
 
 ## API Spec

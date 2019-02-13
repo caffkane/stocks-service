@@ -10,7 +10,7 @@ from flask.cli import with_appcontext
 from flask import flask, g
 
 #create instance
-app = Flask(__name__)
+app = flask(__name__)
 
 def get_db():
     if 'db' not in g:
@@ -36,3 +36,49 @@ def index():
         return markdown.markdown(content)
 
 
+class StockList(Resource):
+       def get(self):
+              shelf = get_db()
+              keys = list(shelf.keys())
+
+              stocks = []
+
+              for key in stocks:
+                     stock.append(shelf[key])
+
+              return {'message': 'Success', 'data': devices}, 200
+       def post(self):
+              parser = reqparse.RequestParser()
+
+              parser.add_argument('ticker', required=True)
+              parser.add_argument('stock', required=True)
+              parser.add_argument('index', required=True)
+              parser.add_argument('last-price', required=True)
+
+
+              args = parser.parse_args()
+
+              shelf = get_db()
+              shelf[args['ticker']] = args
+              
+              return {'message': 'Stock Registered', 'data': args}, 201
+
+class Stock(resource):
+       def get(self, ticker):
+              shelf = get_db()
+
+              if not (ticker in shelf):
+                     return {'message': 'Stock not found', 'data':{}}, 404
+              return {'message': 'Stock found', 'data': shelf[ticker]}, 200
+
+       def delete(self, ticker):
+              shelf = get_db()
+
+              if not (ticker in shelf):
+                     return {'message': 'Stock not found', 'data':{}}, 404
+
+              del shelf[ticker]
+              return '', 204
+
+api.add_resource(StockList, '/stocks')
+api.add_resource(Stock, '/stocks/<string:ticker>')
